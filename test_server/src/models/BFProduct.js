@@ -1,6 +1,6 @@
 const mongoose = require("../config/db");
 
-const BlackFridayProductSchema = new mongoose.Schema({
+const BFProductSchema = new mongoose.Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "products", // 이 부분이 실제 Product 스키마와 연결을 지어줍니다.
@@ -18,4 +18,4 @@ const BlackFridayProductSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("BlackFridayProduct", BlackFridayProductSchema);
+module.exports = mongoose.model("BFProduct", BFProductSchema);
