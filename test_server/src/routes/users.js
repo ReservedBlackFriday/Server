@@ -7,4 +7,6 @@ router.post("/signup", userController.registerUser);
 
 router.post("/login", userController.loginUser);
 
+router.patch("/bf_group", userController.addBFGroup);
+
 module.exports = router;

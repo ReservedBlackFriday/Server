@@ -15,6 +15,8 @@ var productRouter = require("./src/routes/product");
 // Database
 var mongoose = require("./src/config/db");
 
+const getTodayGroupId = require("./src/config/getTodayGroupId");
+
 var app = express();
 
 // view engine setup

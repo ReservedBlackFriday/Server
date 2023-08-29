@@ -5,6 +5,6 @@ const productController = require("../controllers/productController");
 
 router.get("/black_friday/list", productController.getBFProductList);
 
-router.get("/black_friday/:id", productController.getBFProduct);
+router.get("/black_friday", productController.getBFProduct);
 
 module.exports = router;

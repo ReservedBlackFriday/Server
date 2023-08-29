@@ -6,7 +6,7 @@ const BFDaySchema = new mongoose.Schema({
     required: true,
   },
   bf_day: {
-    type: Date,
+    type: String,
     required: true,
   },
 });

@@ -32,10 +32,9 @@ exports.registerUser = async (req, res) => {
     await newUser.save();
 
     // 회원가입 성공 (이 부분에서 JWT 토큰을 생성하거나 다른 작업을 할 수 있습니다.)
-    res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
+    res.status(201).json({ message: "User created successfully" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err });
   }
 };
@@ -51,7 +50,7 @@ exports.loginUser = async (req, res) => {
 
     // 유저가 없으면 에러
     if (!user) {
-      return res.status(401).json({ error: "No user found with this email" });
+      return res.status(401).json({ message: "No user found with this email" });
     }
 
     // 비밀번호 확인
@@ -59,11 +58,34 @@ exports.loginUser = async (req, res) => {
 
     // 비밀번호가 일치하지 않으면 에러
     if (!isMatch) {
-      return res.status(401).json({ error: "Invalid password" });
+      return res.status(401).json({ message: "Invalid password" });
     }
 
     // 로그인 성공 (이 부분에서 JWT 토큰을 생성하거나 다른 작업을 할 수 있습니다.)
     res.status(200).json({ message: "Logged in successfully", user });
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+// 사용자 BFDay 그룹 추가 컨트롤러
+exports.addBFGroup = async (req, res) => {
+  try {
+    // 클라이언트에서 받은 email
+    const { email, bf_group } = req.body;
+
+    // email로 유저 찾기
+    const user = await User.findOne({ email });
+
+    // 유저가 없으면 에러
+    if (!user) {
+      return res.status(401).json({ message: "No user found with this email" });
+    }
+    user["bf_group"] = bf_group;
+    res.status(200).json({
+      message: "Adding BF Group in successfully",
+      bf_group: bf_group,
+    });
   } catch (err) {
     res.status(500).json({ error: err });
   }
