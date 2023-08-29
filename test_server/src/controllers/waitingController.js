@@ -21,7 +21,7 @@ exports.verificateUserBFReservationPermissions = async (req, res) => {
       Buffer.from(privateKey),
       null
     );
-    let decryptedEmail = decipher.update(encryptedEmail, "hex", "utf8");
+    let decryptedEmail = decipher.update(encryptedEmail, "base64", "utf8");
     decryptedEmail += decipher.final("utf8");
 
     if (email === decryptedEmail) {

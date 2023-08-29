@@ -16,9 +16,7 @@ exports.registerUser = async (req, res) => {
     const existingUser = await User.findOne({ email });
     // 유저가 이미 있으면 에러
     if (existingUser) {
-      return res
-        .status(409)
-        .json({ message: "User with this email already exists" });
+      res.status(409).json({ message: "User with this email already exists" });
     }
 
     // 비밀번호 해싱
@@ -55,14 +53,14 @@ exports.loginUser = async (req, res) => {
     // 유저가 없으면 에러
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "No user found with this email" });
+      res.status(404).json({ message: "No user found with this email" });
     }
 
     // 비밀번호 확인
     const isMatch = await bcrypt.compare(password, user.password);
     // 비밀번호가 일치하지 않으면 에러
     if (!isMatch) {
-      return res.status(401).json({ message: "Invalid password" });
+      res.status(401).json({ message: "Invalid password" });
     }
 
     res.status(200).json({ message: "Logged in successfully", user });
@@ -84,7 +82,7 @@ exports.addBFGroup = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: "No user found with this email" });
+      res.status(401).json({ message: "No user found with this email" });
     }
 
     user["bf_group"] = bf_group;

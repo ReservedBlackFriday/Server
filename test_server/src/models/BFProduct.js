@@ -12,13 +12,26 @@ const BFProductSchema = new mongoose.Schema({
   discount_price: {
     type: Number,
   },
-  amount: {
+  amount_group: {
     A: Number,
     B: Number,
     C: Number,
     D: Number,
     E: Number,
   },
+  amount: {
+    type: Number,
+  },
+  lottery_users: [
+    {
+      userId: mongoose.Schema.Types.ObjectId,
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      // ... 다른 필요한 필드
+    },
+  ],
 });
 
 module.exports = mongoose.model("BFProduct", BFProductSchema);

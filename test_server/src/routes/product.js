@@ -7,4 +7,8 @@ router.get("/black_friday/list", productController.getBFProductList);
 
 router.get("/black_friday", productController.getBFProduct);
 
+router.patch("/black_friday", productController.purchaseProduct);
+
+router.patch("/black_friday/lottery", productController.applyProductLottery);
+
 module.exports = router;

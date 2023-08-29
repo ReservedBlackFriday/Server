@@ -12,6 +12,16 @@ const UserSchema = new mongoose.Schema({
   bf_group: {
     type: String,
   },
+  purchase_history: [
+    {
+      productId: mongoose.Schema.Types.ObjectId,
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      // ... 다른 필요한 필드
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", UserSchema);
