@@ -1,9 +1,14 @@
 const mongoose = require("../config/db");
 
 const UserSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  // 다른 필드
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);
