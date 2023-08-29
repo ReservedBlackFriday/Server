@@ -8,11 +8,13 @@ const BlackFridayProductSchema = new mongoose.Schema({
   },
   discount_rate: {
     type: Number,
-    required: true,
   },
   amount: {
-    type: Number,
-    required: true,
+    A: Number,
+    B: Number,
+    C: Number,
+    D: Number,
+    E: Number,
   },
 });
 
