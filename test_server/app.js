@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 // 라우터 경로 설정
-app.use("/", indexRouter);
+app.use("", indexRouter);
 app.use("/users", usersRouter);
 app.use("/product", productRouter);
 app.use("/waiting", waitingRouter);

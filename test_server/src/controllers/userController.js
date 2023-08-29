@@ -88,6 +88,7 @@ exports.addBFGroup = async (req, res) => {
     }
 
     user["bf_group"] = bf_group;
+    user.save();
 
     res.status(200).json({
       message: "Adding BF Group in successfully",
