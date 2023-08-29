@@ -11,11 +11,10 @@ const cors = require("cors");
 var indexRouter = require("./src/routes/index");
 var usersRouter = require("./src/routes/users");
 var productRouter = require("./src/routes/product");
+var waitingRouter = require("./src/routes/waiting");
 
 // Database
 var mongoose = require("./src/config/db");
-
-const getTodayGroupId = require("./src/config/getTodayGroupId");
 
 var app = express();
 
@@ -31,9 +30,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
+// 라우터 경로 설정
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/product", productRouter);
+app.use("/waiting", waitingRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

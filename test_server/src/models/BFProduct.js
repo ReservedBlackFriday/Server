@@ -9,6 +9,9 @@ const BFProductSchema = new mongoose.Schema({
   discount_rate: {
     type: Number,
   },
+  discount_price: {
+    type: Number,
+  },
   amount: {
     A: Number,
     B: Number,

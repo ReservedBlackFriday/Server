@@ -16,7 +16,7 @@ exports.getBFProductList = async (req, res) => {
     });
   } catch (err) {
     console.error(err); // 또는 console.error(err.message)
-    res.status(500).json({ error: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -28,7 +28,7 @@ exports.getBFProduct = async (req, res) => {
   try {
     const product = await BFProduct.findOne({ _id: productId })
       .populate("productId", "name price description") // populate를 통해 원하는 필드만 선택합니다.
-      .select(`amount.${todayGroupId} productId`);
+      .select(`discount_rate discount_price amount.${todayGroupId} productId`);
 
     res.status(200).json({
       message: "Black Friday Product Details",
@@ -36,6 +36,6 @@ exports.getBFProduct = async (req, res) => {
     });
   } catch (err) {
     console.error(err); // 또는 console.error(err.message)
-    res.status(500).json({ error: err });
+    res.status(500).json({ message: err.message });
   }
 };
