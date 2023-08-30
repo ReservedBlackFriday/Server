@@ -113,7 +113,9 @@ exports.applyProductLottery = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+    const userId = user._id;
     const bfProduct = await BFProduct.findOne({ _id: productId });
+
     // 유저가 없으면 에러
     if (!user || !bfProduct) {
       return res.status(404).json({
@@ -127,7 +129,7 @@ exports.applyProductLottery = async (req, res) => {
     }
     // 선택한 제품의 해당 유저가 이미 추첨 응모를 했는지 검사
     for (const user of bfProduct["lottery_users"]) {
-      if (String(user.userId) === String(user._id)) {
+      if (String(user.userId) == String(userId)) {
         return res
           .status(403)
           .json({ message: "The user has already been drawn" });
@@ -135,7 +137,7 @@ exports.applyProductLottery = async (req, res) => {
     }
 
     // 블랙 프라이데이 제품 데이터에 추첨 신청자 push
-    const userId = user._id;
+
     bfProduct["lottery_users"].push({ userId });
     await bfProduct.save();
 

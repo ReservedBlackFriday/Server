@@ -12,5 +12,4 @@ mongoose
     console.log("Error in MongoDB connection: " + err);
   });
 
-// 여기에 기타 코드 (미들웨어 설정, 라우팅 등)를 작성합니다.
 module.exports = mongoose;
